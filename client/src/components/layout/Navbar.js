@@ -1,22 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Navbar () {
+export default function Navbar() {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <a href="index.html"> <i className="fas fa-record-vinyl"></i> JamLocal </a>
+        <Link to="/">
+          <i className="fas fa-record-vinyl"></i> JamLocal
+        </Link>
       </h1>
       <ul>
         <li>
-          <a href="profiles.html">Musicians</a>
+          <Link to="#">Creators</Link>
         </li>
         <li>
-          <a href="register.html">Register</a>
+          <Link to="/register">Register</Link>
         </li>
         <li>
-          <a href="login.html">Login</a>
+          <Link to="/login">Login</Link>
         </li>
       </ul>
     </nav>
-  )
+  );
 }

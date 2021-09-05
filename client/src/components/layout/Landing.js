@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Landing() {
   return (
@@ -8,15 +9,15 @@ export default function Landing() {
           <h1 class="x-large">Local Link</h1>
           <p class="lead">Create a profile and connect with other creators</p>
           <div class="buttons">
-            <a href="signup.html" class="btn btn-primary">
+            <Link to="/register" className="btn btn-primary">
               Sign Up
-            </a>
-            <a href="login.html" class="btn">
+            </Link>
+            <Link to="/login" className="btn btn-light">
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </div>
     </section>
   );
-};
+}

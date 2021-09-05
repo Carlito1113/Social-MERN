@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 export default function Landing() {
   return (
-    <section class="landing">
-      <div class="dark-overlay">
-        <div class="landing-inner">
-          <h1 class="x-large">Local Link</h1>
-          <p class="lead">Create a profile and connect with other creators</p>
-          <div class="buttons">
+    <section className="landing">
+      <div className="dark-overlay">
+        <div className="landing-inner">
+          <h1 className="x-large">Local Link</h1>
+          <p className="lead">Create a profile and connect with other creators</p>
+          <div className="buttons">
             <Link to="/register" className="btn btn-primary">
               Sign Up
             </Link>

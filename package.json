@@ -6,7 +6,7 @@
     "start": "node server",
     "server": "nodemon server",
     "client": "yarn start --prefix client",
-    "dev": "concurrently \"yarn run server\" \"yarn start\""
+    "dev": "concurrently \"yarn run server\" \"cd client && yarn start\""
   },
   "repository": "git@github.com:Carlito1113/social-mern.git",
   "author": "Carlito Algarin",

@@ -37,7 +37,7 @@ export const register =
   async dispatch => {
     const config = {
       headers: {
-        'Content-Type': 'appilcation/json',
+        'Content-Type': 'application/json',
       },
     };
 
@@ -72,7 +72,7 @@ export const login =
   async dispatch => {
     const config = {
       headers: {
-        'Content-Type': 'appilcation/json',
+        'Content-Type': 'application/json',
       },
     };
 

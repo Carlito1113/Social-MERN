@@ -10,7 +10,7 @@ import AddExperience from '../profile-forms/AddExperience';
 import AddEducation from '../profile-forms/AddEducation';
 import NotFound from '../layout/NotFound';
 import Profiles from '../profiles/Profiles';
-import Profile from '../profiles/Profile';
+import Profile from '../profile/Profile';
 import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = () => {

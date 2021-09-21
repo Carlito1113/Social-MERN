@@ -191,19 +191,34 @@ router.put(
 // @access   Private
 
 router.delete('/experience/:exp_id', auth, async (req, res) => {
+  // try {
+  //   const foundProfile = await Profile.findOne({ user: req.user.id });
+
+  //   foundProfile.experience = foundProfile.experience.filter(
+  //     exp => exp._id.toString() !== req.params.exp_id
+  //   );
+
+  //   await foundProfile.save();
+  //   return res.status(200).json(foundProfile);
+  // } catch (error) {
+  //   console.error(error);
+  //   return res.status(500).json({ msg: 'Server error' });
+  // }
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
-
-    foundProfile.experience = foundProfile.experience.filter(
-      exp => exp._id.toString() !== req.params.exp_id
-    );
-
-    await foundProfile.save();
-    return res.status(200).json(foundProfile);
-  } catch (error) {
+    const eduIds = foundProfile.education.map(edu => edu._id.toString());
+    const removeIndex = eduIds.indexOf(req.params.edu_id);
+    if (removeIndex === -1) {
+        return res.status(500).json({ msg: "Server error" });
+    } else { 
+        foundProfile.education.splice(removeIndex,1);
+        await foundProfile.save();
+        res.json({ msg: 'Education Deleted'})
+    }
+} catch (error) {
     console.error(error);
-    return res.status(500).json({ msg: 'Server error' });
-  }
+    return res.status(500).json({ msg: "Server error" });
+}
 });
 
 // @route    PUT api/profile/education
@@ -262,15 +277,28 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @access   Public
 router.get('/github/:username', async (req, res) => {
   try {
-    const uri = encodeURI(
-      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
-    );
-    const headers = {
-      'user-agent': 'node.js',
-      Authorization: `token ${config.get('githubToken')}`,
+    // const uri = encodeURI(
+    //   `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
+    // ),
+    // const headers = {
+    //   'user-agent': 'node.js',
+    //   Authorization: `token ${config.get('githubToken')}`,
+    // };
+
+    const options = {
+      uri: encodeURI(
+        `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
+      ),
+      method: 'GET',
+      headers: {
+        'user-agent': 'node.js',
+        Authorization: `token ${config.get('githubToken')}`,
+      },
     };
 
-    const gitHubResponse = await axios.get(uri, { headers });
+    // const gitHubResponse = await axios.get(uri, { headers });
+
+    const gitHubResponse = await axios.get(options);
     return res.json(gitHubResponse.data);
   } catch (err) {
     console.error(err.message);

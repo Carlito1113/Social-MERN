@@ -85,18 +85,18 @@ const ProfileForm = ({
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <select name="status" value={status} onChange={onChange}>
-            <option>* Select Professional Status</option>
-            <option value="Developer">Developer</option>
-            <option value="Junior Developer">Junior Developer</option>
-            <option value="Senior Developer">Senior Developer</option>
-            <option value="Manager">Manager</option>
-            <option value="Student or Learning">Student or Learning</option>
-            <option value="Instructor">Instructor or Teacher</option>
-            <option value="Intern">Intern</option>
+            <option>* Select Creator Status</option>
+            <option value="Musician">Musician</option>
+            <option value="Artist">Artist</option>
+            <option value="Videographer">Videographer</option>
+            <option value="Photographer">Photographer</option>
+            <option value="Comedian">Comedian</option>
+            <option value="Web Developer">Web Developer</option>
+            <option value="Influencer">Influencer</option>
             <option value="Other">Other</option>
           </select>
           <small className="form-text">
-            Give us an idea of where you are at in your career
+            What is your specialty?
           </small>
         </div>
         <div className="form-group">
@@ -108,7 +108,7 @@ const ProfileForm = ({
             onChange={onChange}
           />
           <small className="form-text">
-            Could be your own company or one you work for
+            Your own website or your companies
           </small>
         </div>
         <div className="form-group">
@@ -132,7 +132,7 @@ const ProfileForm = ({
             onChange={onChange}
           />
           <small className="form-text">
-            City & state suggested (eg. Boston, MA)
+            City & state suggested (eg. Tampa, FL)
           </small>
         </div>
         <div className="form-group">
@@ -144,7 +144,7 @@ const ProfileForm = ({
             onChange={onChange}
           />
           <small className="form-text">
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+            Please use comma separated values (eg. Guitar, Photo editing, Writing, Composing)
           </small>
         </div>
         <div className="form-group">

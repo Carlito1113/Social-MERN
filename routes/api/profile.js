@@ -18,7 +18,7 @@ const Post = require('../../models/Post');
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.user.id
+      user: req.user.id,
     }).populate('user', ['name', 'avatar']);
 
     if (!profile) {
@@ -68,8 +68,8 @@ router.post(
           : '',
       skills: Array.isArray(skills)
         ? skills
-        : skills.split(',').map((skill) => ' ' + skill.trim()),
-      ...rest
+        : skills.split(',').map(skill => ' ' + skill.trim()),
+      ...rest,
     };
 
     // Build socialFields object
@@ -120,7 +120,7 @@ router.get(
   async ({ params: { user_id } }, res) => {
     try {
       const profile = await Profile.findOne({
-        user: user_id
+        user: user_id,
       }).populate('user', ['name', 'avatar']);
 
       if (!profile) return res.status(400).json({ msg: 'Profile not found' });
@@ -144,7 +144,7 @@ router.delete('/', auth, async (req, res) => {
     await Promise.all([
       Post.deleteMany({ user: req.user.id }),
       Profile.findOneAndRemove({ user: req.user.id }),
-      User.findOneAndRemove({ _id: req.user.id })
+      User.findOneAndRemove({ _id: req.user.id }),
     ]);
 
     res.json({ msg: 'User deleted' });
@@ -195,7 +195,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     const foundProfile = await Profile.findOne({ user: req.user.id });
 
     foundProfile.experience = foundProfile.experience.filter(
-      (exp) => exp._id.toString() !== req.params.exp_id
+      exp => exp._id.toString() !== req.params.exp_id
     );
 
     await foundProfile.save();
@@ -247,7 +247,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
     foundProfile.education = foundProfile.education.filter(
-      (edu) => edu._id.toString() !== req.params.edu_id
+      edu => edu._id.toString() !== req.params.edu_id
     );
     await foundProfile.save();
     return res.status(200).json(foundProfile);
@@ -267,7 +267,7 @@ router.get('/github/:username', async (req, res) => {
     );
     const headers = {
       'user-agent': 'node.js',
-      Authorization: `token ${config.get('githubToken')}`
+      Authorization: `token ${config.get('githubToken')}`,
     };
 
     const gitHubResponse = await axios.get(uri, { headers });
